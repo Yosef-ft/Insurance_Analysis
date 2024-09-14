@@ -85,6 +85,50 @@ class DataUtils:
         plt.show()
 
 
+    def num_univariant_visualization(self):
+        '''
+        This funcions helps in visualizing histograms for numeric columns
+        '''
+
+        numerical_cols = self.data.select_dtypes(include=['float64', 'int64']).columns
+        num_cols = len(numerical_cols)
+        nrows = num_cols // 5 + num_cols % 5
+
+        fig, axes = plt.subplots(nrows=nrows, ncols=5, figsize=(20,12))
+        axes = axes.flatten()
+
+        for i, col in enumerate(numerical_cols):
+            sns.histplot(self.data[col], ax=axes[i], bins=10, kde=True)  
+            axes[i].set_title(col)
+
+        for j in range(i + 1, len(axes)):
+            axes[j].set_visible(False)        
+
+        plt.tight_layout()
+        plt.show()
+
+    def cat_univariant_visualization(self):
+        '''
+        This funcions helps in visualizing histograms for categorical columns
+        '''
+
+        categorical_cols = self.data.select_dtypes(include=['object']).columns
+        cat_cols = len(categorical_cols)
+        nrows = cat_cols // 5 + cat_cols % 5
+
+        fig, axes = plt.subplots(nrows=nrows, ncols=5, figsize=(20,12))
+        axes = axes.flatten()
+
+
+        for i, col in enumerate(categorical_cols):
+            self.data[col].value_counts().plot(kind='bar', edgecolor='black', ax=axes[i])
+            plt.title(f'Bar Chart of {col}')
+            plt.xlabel(col)
+            plt.ylabel('Frequency')
+               
+
+        plt.tight_layout()
+        plt.show()   
 
     def outlier_remover(self, columns: list) -> pd.DataFrame:
         '''
