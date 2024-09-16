@@ -130,6 +130,38 @@ class DataUtils:
         plt.tight_layout()
         plt.show()   
 
+
+    def determine_gender(self, title):
+        '''
+        This function helps determine gender from title
+
+        Parameters:
+            title(str): title of the person
+        
+        Returns:
+            Gender(str): Male or Female
+        '''
+        if title in ['Mrs', 'Ms', 'Miss']:
+            return 'Female'
+        elif title == 'Mr':
+            return 'Male'
+        
+    def determine_marriage(self, title):
+        '''
+        This function helps determine MaritalStatus from title
+
+        Parameters:
+            title(str): title of the person
+        
+        Returns:
+            Gender(str): Married or Single        
+        '''
+        if title == 'Mrs':
+            return 'Married'
+        elif title == 'Miss':
+            return 'Single'
+                
+
     def outlier_remover(self, columns: list) -> pd.DataFrame:
         '''
         This funtion removes all the outliers in a data using IQR technique
