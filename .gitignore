@@ -1,6 +1,6 @@
 .venv
 
-data
 
+*.txt
 
 __pycache__
