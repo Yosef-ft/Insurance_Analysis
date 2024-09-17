@@ -1,6 +1,6 @@
 .venv
 
 
-*.txt
+MachineLearningRating_v3.txt
 
 __pycache__
